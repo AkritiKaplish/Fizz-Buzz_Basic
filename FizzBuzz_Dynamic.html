@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Fizz_buzz</title>
+<script type="text/javascript">
+
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    alert("Enter Only a numeric Value");
+        return false;
+    }
+    return true;
+}
+
+function fizzBuzz()
+{
+var start = parseInt(document.getElementById("Range_From").value);
+var end = parseInt(document.getElementById("Range_To").value);
+var div = document.createElement('div');
+var print="<p>";
+if(isNaN(start) || isNaN(end) )
+{
+alert("Kindly enter both the values to proceed");
+}
+if(start>end)
+{
+alert("Start value must be smaller than the End value");
+}else
+{
+
+    for(i=start; i<=end;i++)
+    {
+        if(i%15==0)
+        {
+        print=print+i+ " FIZZBUZZ"+"<br />";
+        }
+        else if(i%3==0)
+        {
+        print=print+i+ " FIZZ"+"<br />";
+        }
+        else if(i%5==0)
+        {
+        print=print+i+ " BUZZ"+"<br />";
+        }
+        else 
+        {
+        print=print+i+"<br />";
+        }
+    }
+}
+    print=print+"</p>";
+    
+    document.getElementById('result').innerHTML = print;
+   
+}
+</script>
+</head>
+<body onpaste="return false;" oncontextmenu="return false;">
+<p><strong>Welcome to Fizz-Buzz Program which prints "Fizz" if a number within a given range is divisible by 3, "Buzz" if it is divisible by 5 and "FizzBuzz if it is divisible by both.</strong></p>
+
+<br />
+<div style="display:inline-block">Start Value</div> <input type="text" id="Range_From" onkeypress="return isNumber(event)">
+<div style="display:inline-block">End Value</div> <input type="text" id="Range_To" onkeypress="return isNumber(event)"> 
+<input type="submit" name="submit" onclick=fizzBuzz()>
+<div id="result">
+</div>
+</body>
+</html>
