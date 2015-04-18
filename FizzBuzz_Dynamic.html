@@ -3,6 +3,24 @@
 <title>Fizz_buzz</title>
 <script type="text/javascript">
 
+function displayOutput()
+{
+var start = parseInt(document.getElementById("Range_From").value);
+var end = parseInt(document.getElementById("Range_To").value);
+var div = document.createElement('div');
+var print="<p>";
+var outputList=fizzBuzz(start,end);
+ 
+ for(i=0;i<outputList.length;i++)
+ {
+  print=print+outputList[i]+"<br />";
+ }
+ 
+ print=print+"</p>";
+ document.getElementById('result').innerHTML = print;
+}
+
+
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -13,12 +31,10 @@ function isNumber(evt) {
     return true;
 }
 
-function fizzBuzz()
+function fizzBuzz(start,end)
 {
-var start = parseInt(document.getElementById("Range_From").value);
-var end = parseInt(document.getElementById("Range_To").value);
-var div = document.createElement('div');
-var print="<p>";
+var outputList=[];
+
 if(isNaN(start) || isNaN(end) )
 {
 alert("Kindly enter both the values to proceed");
@@ -31,27 +47,23 @@ alert("Start value must be smaller than the End value");
 
     for(i=start; i<=end;i++)
     {
-        if(i%15==0)
+    var print="";
+        print = print +i;
+        if(i%3==0)
         {
-        print=print+i+ " FIZZBUZZ"+"<br />";
+        print=print+ "FIZZ";
         }
-        else if(i%3==0)
+        if(i%5==0)
         {
-        print=print+i+ " FIZZ"+"<br />";
+        print=print+ "BUZZ";
         }
-        else if(i%5==0)
-        {
-        print=print+i+ " BUZZ"+"<br />";
-        }
-        else 
-        {
-        print=print+i+"<br />";
-        }
+        outputList.push(print);
     }
-}
-    print=print+"</p>";
     
-    document.getElementById('result').innerHTML = print;
+
+}
+   
+return outputList;    
    
 }
 </script>
@@ -62,7 +74,7 @@ alert("Start value must be smaller than the End value");
 <br />
 <div style="display:inline-block">Start Value</div> <input type="text" id="Range_From" onkeypress="return isNumber(event)">
 <div style="display:inline-block">End Value</div> <input type="text" id="Range_To" onkeypress="return isNumber(event)"> 
-<input type="submit" name="submit" onclick=fizzBuzz()>
+<input type="submit" name="submit" onclick=displayOutput()>
 <div id="result">
 </div>
 </body>
